@@ -6,11 +6,16 @@
 </head>
 <body>
 <div id="root">
-  <button class="like-btn">
-      <span class="like-text">点赞</span>
-  </button>
+
 </div>
+<script src="button.js"></script>
 <script>
+    //先创建一个Button实例
+    let likeButton = new LikeButton();
+    let btnText = likeButton.render();
+    let container = document.querySelector('#root');
+    container.innerHTML = btnText;
+
     //通过选择器获得按钮的DOM对象
     let likeBtn = document.querySelector('.like-btn');
     //按钮里的文本字段
