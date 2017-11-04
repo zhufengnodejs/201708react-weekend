@@ -8,13 +8,13 @@
 <div id="root">
 
 </div>
+<script src="component.js"></script>
 <script src="button2.js"></script>
 <script>
     //先创建一个Button实例 实现了结构的复用
-    let likeButton = new LikeButton();
-    let btnText = likeButton.render();
+    let likeButton = new LikeButton({color:'blue',backgroundColor:'red'});
     let container = document.querySelector('#root');
-    container.appendChild(btnText);
+    likeButton.mount(container);
 </script>
 </body>
 </html>
