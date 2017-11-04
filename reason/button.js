@@ -17,17 +17,27 @@ class LikeButton{
   setState(newState){
     //状态管理有一个规则 每次都要返回不同的对象,不变性
     //this.state=Object.assign(this.state,newState);
-    this.state = Object.assign({},this.state,newState);
+    //this.state = Object.assign({},this.state,newState);
+    this.state = {...this.state,...newState};
+    //先获取这个button的父级节点
+    let parent = this.element.parentNode;
+    //再备份一下老节点
+    let oldEle = this.element;
     //使用新的状态对象重新渲染元素
     this.render();
+    //删除老节点
+    parent.removeChild(oldEle);
+    //把新的节点添进去
+    parent.appendChild(this.element);
   }
   //处理点击事件
   handleClick(){
-    this.state.isLiked = !this.state.isLiked;
-    let likeText = document.querySelector('.like-text');
-    likeText.innerHTML = this.state.isLiked?'取消':'点赞';
+     //调用setState方法把isLiked取反
+     this.setState({isLiked:!this.state.isLiked});
+
   }
   render(){
+    //获取这个button的DOM对象
     this.element = this.createDOMFromString(`
       <button class="like-btn">
          <span class="like-text">${this.state.isLiked?'取消':'点赞'}</span>
