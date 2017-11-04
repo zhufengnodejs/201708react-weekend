@@ -8,7 +8,12 @@ export default {
      domEle.setAttribute(attr,element.attrs[attr]);
    }
    //把子元素也赋给domEle
-   domEle.innerHTML = element.children;
+   if(typeof element.children == 'string'){
+     domEle.innerHTML = element.children;
+   }else{
+     // 把元素的子元素也变成真实DOM元素并添加到当前的DOM元素内部
+     this.render(element.children,domEle);
+   }
     //把真实的DOM对象添加到容器内部
    container.appendChild(domEle);
   }
