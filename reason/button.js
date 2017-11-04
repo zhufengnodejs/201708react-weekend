@@ -34,7 +34,6 @@ class LikeButton{
   handleClick(){
      //调用setState方法把isLiked取反
      this.setState({isLiked:!this.state.isLiked});
-
   }
   render(){
     //获取这个button的DOM对象
