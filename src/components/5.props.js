@@ -1,8 +1,9 @@
 import React,{Component} from 'react';
 import ReactDOM,{render} from 'react-dom';
+import PropTypes from 'prop-types';
 class LikeButton extends Component{
-  constructor(props){
-    super(props);//调用父类构造函数,是用来继承父类的私有属性 this.props = props;
+  constructor(){
+    super();//调用父类构造函数,是用来继承父类的私有属性 this.props = props;
     //这是一个私有的，本地的状态对象，名称是定死的
     this.state = {isLiked:false};
   }
@@ -15,6 +16,9 @@ class LikeButton extends Component{
     this.setState({isLiked:!this.state.isLiked},()=>{
       console.log(this.state.isLiked);
     });
+    //属性具有不变性，组件里只能读不能改
+    //Cannot assign to read only property 'unLikeText' of object '#<Object>'
+    this.props.unLikeText = 'unLikeText';
   }
   render(){
     console.log('render');
@@ -27,8 +31,17 @@ class LikeButton extends Component{
 }
 //指定默认的属性对象
 LikeButton.defaultProps = {
-  likeText:'点赞',
-  unLikeText:'取消'
+  unLikeText:'取消',
+  a:'x'
+}
+//有些时候我们需要对我们的组件参数进行验证合法性和有效性
+//它是用来检查属性的名称和类型的
+//Invalid prop `unLikeText` of type `number` supplied to `LikeButton`, expected `string`.
+//The prop `likeText` is marked as required in `LikeButton`, but its value is `undefined`.
+//LikeButton的属性likeText标记为必填，但是它的值是undefined
+LikeButton.propTypes = {
+  likeText:PropTypes.string.isRequired,
+  unLikeText:PropTypes.string
 }
 /**
  * 1.先把传入这个组件的属性封装成一个对象 {likeText:"赞",unLikeText:"已赞"}
@@ -36,4 +49,4 @@ LikeButton.defaultProps = {
  * 3.
  *
  */
-render(<LikeButton unLikeText='取消2'/>,document.querySelector('#root'));
+render(<LikeButton unLikeText={123}/>,document.querySelector('#root'));
