@@ -40,7 +40,10 @@ export default class Slider extends Component {
           index={this.state.index}
         />
         <SliderArrows turn={this.turn}/>
-        <SliderDots images={this.props.images}/>
+        <SliderDots
+          turn = {this.turn}
+          index={this.state.index}
+          images={this.props.images}/>
       </div>
     )
   }
