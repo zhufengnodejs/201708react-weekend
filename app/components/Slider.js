@@ -17,7 +17,7 @@ export default class Slider extends Component {
     this.setState({index});//修改状态中的index值为新的index值
   }
   go = ()=>{
-    setInterval(()=>{
+    this.timerID = setInterval(()=>{
       this.turn(1);
     },this.props.delay*1000)
   }
@@ -26,13 +26,16 @@ export default class Slider extends Component {
   }
   render() {
     return (
-      <div className="slider-wrapper">
+      <div
+        onMouseOver={()=>clearInterval(this.timerID)}
+        onMouseOut={this.go}
+        className="slider-wrapper">
         <SliderItems
           images={this.props.images}
           speed={this.props.speed}
           index={this.state.index}
         />
-        <SliderArrows/>
+        <SliderArrows turn={this.turn}/>
       </div>
     )
   }
