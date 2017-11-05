@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './Slider.less'
 import SliderItems from "./SliderItems";
+import SliderArrows from "./SliderArrows";
 //默认导出一个Slider
 export default class Slider extends Component {
   constructor(){
@@ -24,10 +25,14 @@ export default class Slider extends Component {
     this.go();
   }
   render() {
-
     return (
       <div className="slider-wrapper">
-        <SliderItems/>
+        <SliderItems
+          images={this.props.images}
+          speed={this.props.speed}
+          index={this.state.index}
+        />
+        <SliderArrows/>
       </div>
     )
   }
