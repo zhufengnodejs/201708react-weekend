@@ -4,7 +4,8 @@
   "description": "```\r npm init -y\r ```",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --open"
+    "dev": "webpack-dev-server --open",
+    "dev-slider":"webpack-dev-server --config webpack.config.slider.js --open"
   },
   "repository": {
     "type": "git",
