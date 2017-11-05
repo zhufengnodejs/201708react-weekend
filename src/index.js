@@ -1,1 +1,1 @@
-import './components/2.jsx'
+import './components/5.props'
