@@ -2,6 +2,14 @@ import React,{Component} from 'react';
 import ReactDOM,{render} from 'react-dom';
 import PropTypes from 'prop-types';
 class LikeButton extends Component{
+  static defaultProps = {
+    unLikeText:'取消',
+    a:'x'
+  }
+  static propTypes = {
+    likeText:PropTypes.string.isRequired,
+    unLikeText:PropTypes.string
+  }
   constructor(){
     super();//调用父类构造函数,是用来继承父类的私有属性 this.props = props;
     //这是一个私有的，本地的状态对象，名称是定死的
