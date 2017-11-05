@@ -53,5 +53,29 @@ ul,li{
       float:right;
       margin-right:5px;
     }
+
+  }
+  .dots{
+    position: absolute;
+    width:100%;
+    height:15px;
+    bottom:10px;
+    left:0;
+    text-align: center;
+    span{
+      display: inline-block;
+      margin-left:5px;
+      width:15px;
+      height:15px;
+      border-radius: 50%;
+      background-color: lightgrey;
+      cursor: pointer;
+      &:hover{
+        background-color: gray;
+      }
+      &.active{
+        background-color: lightskyblue;
+      }
+    }
   }
 }
