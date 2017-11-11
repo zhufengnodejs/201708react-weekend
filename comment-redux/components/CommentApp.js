@@ -2,13 +2,17 @@ import React from 'react';
 import CommentInput from "./CommentInput";
 import 'bootstrap/dist/css/bootstrap.css'
 import CommentList from "./CommentList";
+import {connect} from 'react-redux';
+import actions from '../store/actions';
+//mapStateToProps 把仓库中的状态🌲映射为属性对象，负责输入，把仓库中的状态取出来给组件渲染使用
+//mapDispatchToProps 把仓库的dispatch方法映射为属性对象，负责输出。把组件里用户操作发射到仓库中去
+@connect(
+    state => state,
+    actions
+)
 export default class CommentApp extends React.Component{
     constructor(){
         super();
-        this.state = {comments:[
-            {id:1,username:'张三',content:'你好',createAt:new Date()},
-            {id:2,username:'李四',content:'你好吗?',createAt:new Date()}
-        ]};
     }
     addComment = (comment)=>{
         comment.id = Date.now();
