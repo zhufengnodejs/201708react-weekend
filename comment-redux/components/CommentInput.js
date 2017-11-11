@@ -10,19 +10,29 @@ export default class CommentInput extends React.Component{
         });
         this.content.value = '';
     }
+    handleBlur = (event)=>{
+        let username = event.target.value;
+        localStorage.setItem('username',username)
+    }
+    componentDidMount(){
+        let username = localStorage.getItem('username')||'';
+        this.username.value = username;
+    }
     render(){
         return (
             <form onSubmit={this.handleSubmit} className="form-horizontal">
                 <div className="form-group">
                     <label htmlFor="username" className="control-label col-md-2">用户名</label>
                     <div className="col-md-10">
-                        <input type="text" className="form-control" ref={input=>this.username=input} required/>
+                        <input type="text"
+                               onBlur={this.handleBlur}
+                               className="form-control" ref={input=>this.username=input} required/>
                     </div>
                 </div>
                 <div className="form-group">
                     <label htmlFor="content" className="control-label col-md-2">内容</label>
                     <div className="col-md-10">
-                        <textarea cols="30" rows="10" className="form-control"  ref={input=>this.content=input} required></textarea>
+                        <textarea autoFocus cols="30" rows="10" className="form-control"  ref={input=>this.content=input} required></textarea>
                     </div>
                 </div>
                 <div className="form-group">
