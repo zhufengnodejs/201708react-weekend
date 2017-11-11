@@ -2,7 +2,7 @@ let path = require('path');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   //入口文件
-  entry:'./comment/index.js',
+  entry:'./comment-redux/index.js',
   //输出
   output:{
     //指定输出的绝对路径

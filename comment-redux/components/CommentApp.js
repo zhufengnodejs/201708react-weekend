@@ -17,17 +17,15 @@ export default class CommentApp extends React.Component{
     addComment = (comment)=>{
         comment.id = Date.now();
         comment.createAt = new Date();
-        this.setState({
-            comments:[...this.state.comments,comment]
-        });
+        //派发action,调用reducer修改仓库状态
+        this.props.addComment(comment);
     }
     delComment = (id)=>{
-        this.setState({
-            comments:this.state.comments.filter(item=>item.id != id)
-        });
+        this.props.delComment(id);
     }
     render(){
-       return (
+        console.log(this.props);
+        return (
            <div className="container" style={{marginTop:'20px'}}>
              <div className="row">
                  <div className="col-md-6 col-md-offset-3">
@@ -37,7 +35,7 @@ export default class CommentApp extends React.Component{
                          </div>
                          <div className="panel-body">
                              <CommentList
-                                 comments={this.state.comments}
+                                 comments={this.props.comments}
                                  delComment={this.delComment}
                              />
                          </div>

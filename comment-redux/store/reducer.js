@@ -10,6 +10,8 @@ export default function(state=initState,action){
          return {comments:[...state.comments,action.payload]};
      //{type:DEL_COMMENT,payload:1}
      case types.DEL_COMMENT:
-         return {comments:state.comments.filter(item=>item.id != action.payload)}
+         return {comments:state.comments.filter(item=>item.id != action.payload)};
+     default:
+         return state;
  }
 }
