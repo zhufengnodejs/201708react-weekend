@@ -4,7 +4,7 @@ export default class Comment extends React.Component{
         let {id,username,content,createAt}= this.props.comment;
         return (
             <li className="list-group-item">
-                {username}:{content} <span className="pull-right">{createAt.toLocaleString()}</span>
+                {username}:{content} <button onClick={()=>this.props.delComment(id)} className="btn btn-danger">删除</button> <span className="pull-right">{createAt.toLocaleString()}</span>
             </li>
         )
     }

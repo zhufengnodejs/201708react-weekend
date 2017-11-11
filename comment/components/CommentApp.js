@@ -17,6 +17,11 @@ export default class CommentApp extends React.Component{
             comments:[...this.state.comments,comment]
         });
     }
+    delComment = (id)=>{
+        this.setState({
+            comments:this.state.comments.filter(item=>item.id != id)
+        });
+    }
     render(){
        return (
            <div className="container" style={{marginTop:'20px'}}>
@@ -29,6 +34,7 @@ export default class CommentApp extends React.Component{
                          <div className="panel-body">
                              <CommentList
                                  comments={this.state.comments}
+                                 delComment={this.delComment}
                              />
                          </div>
                          <div className="panel-footer">
