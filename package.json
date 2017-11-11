@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --open",
-    "dev-slider":"webpack-dev-server --config webpack.config.slider.js --open"
+    "dev-slider": "webpack-dev-server --config webpack.config.slider.js --open",
+    "dev-comment": "webpack-dev-server --config webpack.config.comment.js --open"
   },
   "repository": {
     "type": "git",
@@ -35,6 +36,7 @@
     "webpack-dev-server": "^2.9.4"
   },
   "dependencies": {
+    "bootstrap": "^3.3.7",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0"
