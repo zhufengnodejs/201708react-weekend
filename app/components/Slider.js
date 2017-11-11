@@ -9,14 +9,33 @@ export default class Slider extends Component {
     super();
     this.state = {index:0};
   }
+  getSliders = (sliders)=>{
+    this.sliders = sliders;
+  }
   turn = (step)=>{
     let index = this.state.index;//先取得老的index值
     index+=step;//让老的值加上步长
-    if(index>=this.props.images.length){
-        index = 0;
+    if(index>this.props.images.length){
+      //当最后一张要走到2的时候，需要马上拉到索引0，然后再往2走
+        this.sliders.style.transitionDuration = '0s';
+        this.sliders.style.left = '0px';
+        //强行让浏览器重新计算样式
+        getComputedStyle(this.sliders,null).left;
+        index = 1;
+        this.sliders.style.transitionDuration = this.props.speed+'s';
+        this.setState({index});//修改状态中的index值为新的index值
+        return;
     }
     if(index<0){
-      index = this.props.images.length-1;
+        //当最后一张要走到2的时候，需要马上拉到索引0，然后再往2走
+        this.sliders.style.transitionDuration = '0s';
+        this.sliders.style.left = (this.props.images.length)*-300+'px';
+        //强行让浏览器重新计算样式
+        getComputedStyle(this.sliders,null).left;
+        index = this.props.images.length-1;
+        this.sliders.style.transitionDuration = this.props.speed+'s';
+        this.setState({index});//修改状态中的index值为新的index值
+        return;
     }
     this.setState({index});//修改状态中的index值为新的index值
   }
@@ -35,6 +54,7 @@ export default class Slider extends Component {
         onMouseOut={this.go}
         className="slider-wrapper">
         <SliderItems
+          getSliders = {this.getSliders}
           images={this.props.images}
           speed={this.props.speed}
           index={this.state.index}
