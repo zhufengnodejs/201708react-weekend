@@ -4,9 +4,11 @@ export default class CommentList extends React.Component{
     render(){
         return (
             <ul className="list-group">
-                <Comment/>
-                <Comment/>
-                <Comment/>
+                {
+                    this.props.comments.map((item,index)=>(
+                        <Comment comment={item}/>
+                    ))
+                }
             </ul>
         )
     }

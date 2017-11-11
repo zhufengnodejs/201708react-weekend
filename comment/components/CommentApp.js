@@ -6,9 +6,16 @@ export default class CommentApp extends React.Component{
     constructor(){
         super();
         this.state = {comments:[
-            {id:1,username:'张三',content:'你好'},
-            {id:2,username:'李四',content:'你好吗?'}
+            {id:1,username:'张三',content:'你好',createAt:new Date()},
+            {id:2,username:'李四',content:'你好吗?',createAt:new Date()}
         ]};
+    }
+    addComment = (comment)=>{
+        comment.id = Date.now();
+        comment.createAt = new Date();
+        this.setState({
+            comments:[...this.state.comments,comment]
+        });
     }
     render(){
        return (
@@ -20,10 +27,14 @@ export default class CommentApp extends React.Component{
                              <h3 className="text-center">珠峰留言板</h3>
                          </div>
                          <div className="panel-body">
-                             <CommentList/>
+                             <CommentList
+                                 comments={this.state.comments}
+                             />
                          </div>
                          <div className="panel-footer">
-                             <CommentInput/>
+                             <CommentInput
+                                 addComment={this.addComment}
+                             />
                          </div>
                      </div>
                  </div>
